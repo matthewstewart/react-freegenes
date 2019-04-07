@@ -20,12 +20,16 @@ git clone https://github.com/matthewstewart/react-freegenes.git
 ```
 
 ### Change Directory To Project
+In the terminal, run:
 ```bash
 cd react-freegenes
 ```
 
 ### Start Project
+In the terminal, run:
 ```bash
 npm start
 ```
 
+### Stop Project
+To stop the application while running in the terminal, type `CTRL + C`.
