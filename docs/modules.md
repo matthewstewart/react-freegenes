@@ -1,4 +1,4 @@
-## Modules
+## Dependencies
 
 ### Node-Sass
 [https://www.npmjs.com/package/node-sass](https://www.npmjs.com/package/node-sass)  
