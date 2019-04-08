@@ -12,7 +12,7 @@ class Collections extends Component {
   }
   
   componentDidMount() {
-    Api.get('')
+    Api.get('/collections')
     .then(res => {
       console.log('/collections', res)
     })
