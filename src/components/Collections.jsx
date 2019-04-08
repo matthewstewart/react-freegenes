@@ -1,8 +1,26 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Api from '../modules/Api';
 
 class Collections extends Component {
   
+  constructor(props) {
+    super(props);
+    this.state = {
+      isReady: false
+    };
+  }
+  
+  componentDidMount() {
+    Api.get('')
+    .then(res => {
+      console.log('/collections', res)
+    })
+    .catch(error => {
+      throw error;
+    });
+  }
+
   render() {
     return (
       <div className="Collections container-fluid">
