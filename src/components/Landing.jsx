@@ -17,12 +17,6 @@ class Landing extends Component {
               </div>
               <ul className="list-group list-group-flush">
                 <Link 
-                  to="/todos"
-                  className="list-group-item list-group-item-action"
-                >
-                  Todo Example
-                </Link>
-                <Link 
                   to="/collections"
                   className="list-group-item list-group-item-action"
                 >

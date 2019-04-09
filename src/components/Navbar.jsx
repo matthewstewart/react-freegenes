@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import shortid from 'shortid';
-//import './Navbar.scss';
 import { Link, NavLink, withRouter } from "react-router-dom";
-//import Logo from '../images/freegenes-logo.png';
 
 class Navbar extends Component {
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <Link className="navbar-brand" to="/">
-          {/* <img src={Logo} width="40" height="30" className="d-inline-block align-top mr-3" alt="Bionet Logo" /> */}
           FreeGenes
         </Link>
         <button 
@@ -29,7 +25,7 @@ class Navbar extends Component {
               <Link className="nav-link" to="/">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/collections">Collections</Link>
+              <NavLink className="nav-link" to="/collections">Collections</NavLink>
             </li>
           </ul>
         </div>
