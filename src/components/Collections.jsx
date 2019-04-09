@@ -158,23 +158,32 @@ class Collections extends Component {
           </div>
           <div className="col-xs-12 col-md-6">
             {selectedRecord && (
-              <div className="card mt-3">
-                <div className="card-header">
-                  {selectedRecord.name}
-                </div>
-                <div className="card-body">
-                  {/* <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre> */}
-                  <div className="card-text">
-                    {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
-                    {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
-                    {selectedRecord.readme && (<><strong>Description</strong>: {selectedRecord.readme}<br/></>)}
-                    {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
+              <>
+                <div className="card mt-3">
+                  <div className="card-header">
+                    {selectedRecord.name}
+                  </div>
+                  <div className="card-body">
+                    {/* <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre> */}
+                    <div className="card-text">
+                      {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
+                      {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
+                      {selectedRecord.readme && (<><strong>Description</strong>: {selectedRecord.readme}<br/></>)}
+                      {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
+                    </div>
                   </div>
                 </div>
-                <ul className="list-group list-group-flush">
-                  {partListItems && partListItems}
-                </ul>
-              </div>
+                {parts && parts.length > 0 && (
+                  <div className="card mt-3">
+                    <div className="card-header">
+                      {selectedRecord.name} Parts
+                    </div>
+                    <ul className="list-group list-group-flush">
+                      {partListItems && partListItems}
+                    </ul>
+                  </div>  
+                )}
+              </>
             )}
           </div>
         </div>
