@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Api from '../modules/Api';
 import shortid from 'shortid';
 
@@ -86,7 +86,7 @@ class Collections extends Component {
     const records = this.state.records;
     const recordListItems = records.map((record, recordIndex) => {
       return (
-        <Link 
+        <NavLink 
           key={shortid.generate()}
           className="list-group-item list-group-item-action"
           to={`/collections/${record.uuid}`}
@@ -94,7 +94,7 @@ class Collections extends Component {
           //onClick={this.onRecordClick}
         >
           {record.name}
-        </Link>
+        </NavLink>
       );
     });
     return (
