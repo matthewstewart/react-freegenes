@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.scss';
 
 import Loading from './components/Loading';
+import Navbar from './components/Navbar';
 import Router from './components/Router';
 
 class App extends Component {
@@ -22,17 +23,20 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.isReady ? (
-          <Router 
-            {...this.props} 
-            {...this.state}
-          />
-        ) : (
-          <Loading 
-            title="Loading App..."
-            message="Testing the loading state with an intentional 2 second delay..."
-          />
-        )}
+        <div className="viewport">
+          <Navbar />
+          {this.state.isReady ? (
+            <Router 
+              {...this.props} 
+              {...this.state}
+            />
+          ) : (
+            <Loading 
+              title="Loading App..."
+              message="Testing the loading state with an intentional 2 second delay..."
+            />
+          )}
+        </div>
       </div>
     );
   }

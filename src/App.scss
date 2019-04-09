@@ -1,4 +1,8 @@
 .App {
+  .viewport {
+    min-height: 100vh;
+    background-color: #CCC;
+  }
   .card {
     .card-header { font-size: 1.4em;}
   }
