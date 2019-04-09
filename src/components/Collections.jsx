@@ -37,15 +37,24 @@ class Collections extends Component {
     }
   }
 
+  async getParts(id) {
+    try {
+      return await Api.get(`/parts/collection/${id}`);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async getData() {
     try {
       const recordId = this.props.match.params.recordId;
       let selectedRecord = null;
+      let parts = null;
       if (recordId){
         selectedRecord = await this.getRecord(recordId);
+        parts = await this.getParts(recordId);
       }
       const records = await this.getRecords();
-      const parts = selectedRecord ? selectedRecord.parts : null;
       return {
         records,
         selectedRecord,
@@ -126,6 +135,7 @@ class Collections extends Component {
           key={shortid.generate()}
           collection={this.state.selectedRecord}
           part={part}
+          {...this.props}
           //className="list-group-item list-group-item-action"
           //to={`/collections/${this.state.selectedRecord.uuid}/parts/${part}`}
         />
@@ -160,7 +170,7 @@ class Collections extends Component {
             {selectedRecord && (
               <>
                 <div className="card mt-3">
-                  <div className="card-header">
+                  <div className="card-header text-capitalize">
                     {selectedRecord.name}
                   </div>
                   <div className="card-body">
@@ -175,7 +185,7 @@ class Collections extends Component {
                 </div>
                 {parts && parts.length > 0 && (
                   <div className="card mt-3">
-                    <div className="card-header">
+                    <div className="card-header text-capitalize">
                       {selectedRecord.name} Parts
                     </div>
                     <ul className="list-group list-group-flush">
