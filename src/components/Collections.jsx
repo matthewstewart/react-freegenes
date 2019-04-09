@@ -12,7 +12,7 @@ class Collections extends Component {
   }
   
   componentDidMount() {
-    Api.get('/collections')
+    Api.getFullURL('http://api.freegenes.org/collections/')
     .then(res => {
       console.log('/collections', res)
     })
@@ -31,7 +31,7 @@ class Collections extends Component {
                 Collections
               </div>
               <div className="card-body">
-                Welcome To FreeGenes.
+                Collections View.
               </div>
               <ul className="list-group list-group-flush">
                 <Link 
