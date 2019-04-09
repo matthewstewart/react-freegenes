@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router-dom';
 import shortid from 'shortid';
+import './ToDoList.scss';
 
 class TodoList extends Component {
   
@@ -31,9 +32,11 @@ class TodoList extends Component {
       );
     });
     return (
-      <ul className="TodoList list-group list-group-flush">
-        {listItems}
-      </ul>
+      <div className="ToDoList">
+        <ul className="list-group list-group-flush">
+          {listItems}
+        </ul>
+      </div>
     );
   }
 }
