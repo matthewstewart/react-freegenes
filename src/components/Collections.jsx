@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Api from '../modules/Api';
 import shortid from 'shortid';
+import './Collections.scss';
 import PartListItem from './PartListItem';
+
 
 class Collections extends Component {
   
@@ -188,7 +190,10 @@ class Collections extends Component {
                     <div className="card-header text-capitalize">
                       {selectedRecord.name} Parts
                     </div>
-                    <ul className="list-group list-group-flush">
+                    <ul 
+                      id="parts-list"
+                      className="list-group list-group-flush"
+                    >
                       {partListItems && partListItems}
                     </ul>
                   </div>  
