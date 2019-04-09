@@ -28,7 +28,7 @@ class Collections extends Component {
 
   async getRecord(id) {
     try {
-      return await Api.get(`/collections/${id}`);
+      return await Api.get(`/collections/full/${id}`);
     } catch (error) {
       throw error;
     }
