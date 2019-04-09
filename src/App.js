@@ -9,14 +9,14 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isReady: false
+      isReady: true
     };
   }
   
   componentDidMount() {
-    setTimeout(() => {
-      this.setState({isReady: true});
-    }, 2000);
+    // setTimeout(() => {
+    //   this.setState({isReady: true});
+    // }, 2000);
   }
 
   render() {
