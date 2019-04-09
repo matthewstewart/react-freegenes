@@ -10,6 +10,7 @@ class Router extends Component {
       <div className="Router">
         <Switch>
           <Route exact path="/todos" render={(props) => <ToDos {...props} {...this.props}/>}/>
+          <Route path="/collections/:recordId/parts/:partId" render={(props) => <Collections {...props} {...this.props}/>}/>
           <Route path="/collections/:recordId" render={(props) => <Collections {...props} {...this.props}/>}/>
           <Route exact path="/collections" render={(props) => <Collections {...props} {...this.props}/>}/>
           <Route exact path="/" render={(props) => <Landing {...props} {...this.props}/>}/>

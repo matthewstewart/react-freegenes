@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Api from '../modules/Api';
 import shortid from 'shortid';
+import PartListItem from './PartListItem';
 
 class Collections extends Component {
   
@@ -10,7 +11,9 @@ class Collections extends Component {
     this.state = {
       isReady: false,
       records: [],
-      selectedRecord: null
+      selectedRecord: null,
+      parts: null,
+      selectedPart: null
     };
     this.getRecord = this.getRecord.bind(this);
     this.onRecordClick = this.onRecordClick.bind(this);
@@ -42,9 +45,11 @@ class Collections extends Component {
         selectedRecord = await this.getRecord(recordId);
       }
       const records = await this.getRecords();
+      const parts = selectedRecord ? selectedRecord.parts : null;
       return {
         records,
-        selectedRecord
+        selectedRecord,
+        parts
       };
     } catch (error) {
       throw error;
@@ -54,10 +59,12 @@ class Collections extends Component {
   getDataSync() {
     this.getData()
     .then(res => {
-      const { records, selectedRecord } = res;
+      const { records, selectedRecord, parts } = res;
       this.setState({
         records,
-        selectedRecord
+        selectedRecord,
+        parts,
+        isReady: true
       });
     })
     .catch(error => {
@@ -74,6 +81,7 @@ class Collections extends Component {
     const prevId = prevProps.match.params.recordId;
     const currentId = this.props.match.params.recordId;
     if (currentId && prevId !== currentId) {
+      this.setState({ isReady: false });
       this.getDataSync();
     }
   }
@@ -84,17 +92,43 @@ class Collections extends Component {
 
   render() {
     const records = this.state.records;
+    const selectedRecord = this.state.selectedRecord;
+    const parts = this.state.parts || [];
+
     const recordListItems = records.map((record, recordIndex) => {
       return (
         <NavLink 
           key={shortid.generate()}
           className="list-group-item list-group-item-action"
           to={`/collections/${record.uuid}`}
-          //index={recordIndex}
-          //onClick={this.onRecordClick}
         >
           {record.name}
         </NavLink>
+      );
+    });
+    const partListItems = parts.map((part, partIndex) => {
+      //const partIsString = typeof part === 'string';
+      // if (partIsString) {
+      //   return (
+      //     <NavLink 
+      //       key={shortid.generate()}
+      //       className="list-group-item list-group-item-action"
+      //       to={`/collections/${this.state.selectedRecord.uuid}/parts/${part}`}
+      //     >
+      //       {part}
+      //     </NavLink>
+      //   );
+      // } else {
+      //   return null;
+      // }
+      return (
+        <PartListItem 
+          key={shortid.generate()}
+          collection={this.state.selectedRecord}
+          part={part}
+          //className="list-group-item list-group-item-action"
+          //to={`/collections/${this.state.selectedRecord.uuid}/parts/${part}`}
+        />
       );
     });
     return (
@@ -106,7 +140,16 @@ class Collections extends Component {
                 Collections
               </div>
               <div className="card-body">
-                Collections View.
+                {this.state.isReady ? (
+                  <div className="card-text">
+                    {records.length} Collections were found.
+                    {selectedRecord && <><br/>1 Collection with id {selectedRecord.uuid} found.</>}
+                  </div>
+                ) : (
+                  <div className="card-text">
+                    Fetching Collections from the API...
+                  </div>
+                )}
               </div>
               <ul className="list-group list-group-flush">
                 {recordListItems}
@@ -114,17 +157,23 @@ class Collections extends Component {
             </div>
           </div>
           <div className="col-xs-12 col-md-6">
-            {this.state.selectedRecord && (
+            {selectedRecord && (
               <div className="card mt-3">
                 <div className="card-header">
-                  {this.state.selectedRecord.name}
+                  {selectedRecord.name}
                 </div>
                 <div className="card-body">
-                  <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre>
+                  {/* <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre> */}
+                  <div className="card-text">
+                    {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
+                    {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
+                    {selectedRecord.readme && (<><strong>Description</strong>: {selectedRecord.readme}<br/></>)}
+                    {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
+                  </div>
                 </div>
-                {/* <ul className="list-group list-group-flush">
-                  {recordListItems}
-                </ul> */}
+                <ul className="list-group list-group-flush">
+                  {partListItems && partListItems}
+                </ul>
               </div>
             )}
           </div>
