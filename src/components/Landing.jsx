@@ -22,6 +22,12 @@ class Landing extends Component {
                 >
                   Collections
                 </Link>
+                <Link 
+                  to="/plates"
+                  className="list-group-item list-group-item-action"
+                >
+                  Plates
+                </Link>
               </ul>
             </div>
           </div>
