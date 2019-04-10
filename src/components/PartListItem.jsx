@@ -35,7 +35,6 @@ class PartListItem extends Component {
             {part.name} 
           </Link>        
           <div className="card-body">
-            <h4 className="card-title">{part.name}</h4>
             {part.time_created && <><strong>Created</strong>: {part.time_created}<br/></>}
             {part.time_updated && <><strong>Updated</strong>: {part.time_updated}<br/></>}
             {part.gene_id && <><strong>Gene ID</strong>: {part.gene_id}<br/></>}
