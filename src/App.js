@@ -4,6 +4,7 @@ import './App.scss';
 import Loading from './components/Loading';
 import Navbar from './components/Navbar';
 import Router from './components/Router';
+import Footer from './components/Footer';
 
 class App extends Component {
   
@@ -37,6 +38,7 @@ class App extends Component {
             />
           )}
         </div>
+        <Footer />
       </div>
     );
   }
