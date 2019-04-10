@@ -174,16 +174,20 @@ class Collections extends Component {
               <>
                 <div className="card mt-3">
                   <div className="card-header text-capitalize">
-                    {selectedRecord.name}
+                    {this.state.isReady ? selectedRecord.name : 'Loading...'}
                   </div>
                   <div className="card-body">
                     {/* <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre> */}
-                    <div className="card-text">
-                      {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
-                      {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
-                      {selectedRecord.readme && <Markdown source={selectedRecord.readme} />}                      
-                      {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
-                    </div>
+                    {this.state.isReady ? (
+                      <div className="card-text">
+                        {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
+                        {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
+                        {selectedRecord.readme && <Markdown source={selectedRecord.readme} />}                      
+                        {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
+                      </div>
+                    ) : (
+                      <div className="card-text">Loading Collection...</div>
+                    )}  
                   </div>
                 </div>
                 {parts && parts.length > 0 && (
