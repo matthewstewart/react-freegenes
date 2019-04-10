@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Markdown from 'react-markdown';
 import Api from '../modules/Api';
 import shortid from 'shortid';
 import './Collections.scss';
@@ -180,7 +181,7 @@ class Collections extends Component {
                     <div className="card-text">
                       {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
                       {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
-                      {selectedRecord.readme && (<><strong>Description</strong>: {selectedRecord.readme}<br/></>)}
+                      {selectedRecord.readme && <Markdown source={selectedRecord.readme} />}                      
                       {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
                     </div>
                   </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import Markdown from 'react-markdown';
 import shortid from 'shortid';
 import Sequence from './Sequence';
 
@@ -30,7 +31,7 @@ class PartListItem extends Component {
           {part.time_created && <><strong>Created</strong>: {part.time_created}<br/></>}
           {part.time_updated && <><strong>Updated</strong>: {part.time_updated}<br/></>}
           {part.gene_id && <><strong>Gene ID</strong>: {part.gene_id}<br/></>}
-          {part.description && <><strong>Description</strong>: {part.description}<br/></>}
+          {part.description && <Markdown source={part.description} />}
           {part.full_sequence && <Sequence title="Full Sequence" content={part.full_sequence}/>}
           {part.optimized_sequence && <Sequence title="Optimized Sequence" content={part.optimized_sequence}/>}
           {part.original_sequence && <Sequence title="Original Sequence" content={part.original_sequence}/>}
