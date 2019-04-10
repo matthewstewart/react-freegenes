@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
-//import Api from '../modules/Api';
 import shortid from 'shortid';
+import Sequence from './Sequence';
 
 class PartListItem extends Component {
   
@@ -31,10 +31,10 @@ class PartListItem extends Component {
           {part.time_updated && <><strong>Updated</strong>: {part.time_updated}<br/></>}
           {part.gene_id && <><strong>Gene ID</strong>: {part.gene_id}<br/></>}
           {part.description && <><strong>Description</strong>: {part.description}<br/></>}
-          {part.full_sequence && <><strong>Full Sequence</strong>: {part.full_sequence}<br/></>}
-          {part.optimized_sequence && <><strong>Optimized Sequence</strong>: {part.optimized_sequence}<br/></>}
-          {part.original_sequence && <><strong>Original Sequence</strong>: {part.original_sequence}<br/></>}
-          {part.synthesized_sequence && <><strong>Synthesized Sequence</strong>: {part.synthesized_sequence}<br/></>}
+          {part.full_sequence && <Sequence title="Full Sequence" content={part.full_sequence}/>}
+          {part.optimized_sequence && <Sequence title="Optimized Sequence" content={part.optimized_sequence}/>}
+          {part.original_sequence && <Sequence title="Original Sequence" content={part.original_sequence}/>}
+          {part.synthesized_sequence && <Sequence title="Synthesized Sequence" content={part.synthesized_sequence}/>}
           {part.tags && part.tags.length > 0 && <>{tags}</>}
           {/* <pre>{JSON.stringify(part, null, 2)}</pre> */}
         </div>
