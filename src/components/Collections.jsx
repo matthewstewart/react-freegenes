@@ -13,13 +13,13 @@ class Collections extends Component {
     super(props);
     this.state = {
       isReady: false,
+      statusMessage: "Fetching Collections from the API...",
       records: [],
       selectedRecord: null,
       parts: null,
       selectedPart: null
     };
     this.getRecord = this.getRecord.bind(this);
-    this.onRecordClick = this.onRecordClick.bind(this);
     this.getData = this.getData.bind(this);
     this.getDataSync = this.getDataSync.bind(this);
   }
@@ -34,7 +34,8 @@ class Collections extends Component {
 
   async getRecord(id) {
     try {
-      return await Api.get(`/collections/full/${id}`);
+      // return await Api.get(`/collections/full/${id}`);
+      return await Api.get(`/collections/recurse/${id}`);
     } catch (error) {
       throw error;
     }
@@ -72,11 +73,20 @@ class Collections extends Component {
     this.getData()
     .then(res => {
       const { records, selectedRecord, parts } = res;
+      let statusMessage = `${records.length} Collection links`;
+      if (selectedRecord) {
+        statusMessage += `, the ${selectedRecord.name} Collection`;
+      }
+      if (parts.length > 0) {
+        statusMessage += ` and ${selectedRecord.name} ${parts.length} Parts`;
+      }
+      statusMessage += ` were returned from the FreeGenes API.`;
       this.setState({
         records,
         selectedRecord,
         parts,
-        isReady: true
+        isReady: true,
+        statusMessage
       });
     })
     .catch(error => {
@@ -84,16 +94,14 @@ class Collections extends Component {
     });
   }
 
-  onRecordClick(e) {
-    let record = this.state.records[e.target.getAttribute('index')];
-    this.setState({record});
-  }
-
   componentDidUpdate(prevProps, prevState) {
     const prevId = prevProps.match.params.recordId;
     const currentId = this.props.match.params.recordId;
     if (currentId && prevId !== currentId) {
-      this.setState({ isReady: false });
+      this.setState({ 
+        isReady: false, 
+        //statusMessage: `Fetching Collection with UUID ${currentId} from the FreeGenes API...` 
+      });
       this.getDataSync();
     }
   }
@@ -106,6 +114,7 @@ class Collections extends Component {
     const records = this.state.records;
     const selectedRecord = this.state.selectedRecord;
     const parts = this.state.parts || [];
+    const statusMessage = this.state.statusMessage;
 
     const recordListItems = [].concat(records)
     .sort((a, b) => {
@@ -151,7 +160,10 @@ class Collections extends Component {
                 Collections
               </div>
               <div className="card-body">
-                {this.state.isReady ? (
+                <div className="card-text">
+                  {statusMessage}
+                </div>
+                {/* {this.state.isReady ? (
                   <div className="card-text">
                     {records.length} Collections were found.
                     {selectedRecord && <><br/>1 Collection with id {selectedRecord.uuid} found.</>}
@@ -160,7 +172,7 @@ class Collections extends Component {
                   <div className="card-text">
                     Fetching Collections from the API...
                   </div>
-                )}
+                )} */}
               </div>
               <ul className="list-group list-group-flush" id="record-list">
                 {recordListItems}
