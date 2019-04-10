@@ -182,7 +182,7 @@ class Collections extends Component {
                       <div className="card-text">
                         {selectedRecord.time_created && (<><strong>Created</strong>: {selectedRecord.time_created}<br/></>)}
                         {selectedRecord.time_updated && (<><strong>Updated</strong>: {selectedRecord.time_updated}<br/></>)}
-                        {selectedRecord.readme && <Markdown source={selectedRecord.readme} />}                      
+                        {selectedRecord.readme && <Markdown source={selectedRecord.readme} className="card-markdown"/>}                      
                         {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
                       </div>
                     ) : (
