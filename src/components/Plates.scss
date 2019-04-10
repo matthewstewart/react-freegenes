@@ -1,6 +1,6 @@
 .Plates {
-  #parts-list {
-    max-height: 40vh;
+  #record-list {
+    max-height: calc(100vh - 295px);
     overflow-y: scroll;
   }
 }

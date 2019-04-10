@@ -162,7 +162,7 @@ class Collections extends Component {
                   </div>
                 )}
               </div>
-              <ul className="list-group list-group-flush">
+              <ul className="list-group list-group-flush" id="record-list">
                 {recordListItems}
               </ul>
             </div>

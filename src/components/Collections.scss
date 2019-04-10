@@ -1,6 +1,10 @@
 .Collections {
+  #record-list {
+    max-height: calc(100vh - 295px);
+    overflow-y: scroll;
+  }
   #parts-list, #collection-profile {
-    max-height: 40vh;
+    max-height: calc(100vh - 295px - 250px);
     overflow-y: scroll;
   }
 }
