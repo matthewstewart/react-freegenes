@@ -29,10 +29,10 @@ class PartListItem extends Component {
       return (
         <>
           <Link 
-            className="list-group-item list-group-item-action"
+            className="list-group-item list-group-item-action bg-primary text-white"
             to={prevRoute}
           >
-            {part.name}
+            {part.name} 
           </Link>        
           <div className="card-body">
             <h4 className="card-title">{part.name}</h4>
