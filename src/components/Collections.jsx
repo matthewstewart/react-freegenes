@@ -77,7 +77,7 @@ class Collections extends Component {
       if (selectedRecord) {
         statusMessage += `, the ${selectedRecord.name} Collection`;
       }
-      if (parts.length > 0) {
+      if (parts && parts.length > 0) {
         statusMessage += ` and ${selectedRecord.name} ${parts.length} Parts`;
       }
       statusMessage += ` were returned from the FreeGenes API.`;
@@ -196,6 +196,7 @@ class Collections extends Component {
                         {selectedRecord.status && (<><strong>Status</strong>: {selectedRecord.status}</>)} 
                       </div>
                     ) : (
+                      // <div className="card-text">Loading Collection...</div>
                       <div className="card-text">Loading Collection...</div>
                     )}  
                   </div>

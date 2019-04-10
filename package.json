@@ -9,6 +9,7 @@
     "react-markdown": "^4.0.6",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-treebeard": "^3.1.0",
     "shortid": "^2.2.14"
   },
   "scripts": {
