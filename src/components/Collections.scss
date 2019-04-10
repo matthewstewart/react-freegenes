@@ -1,10 +1,22 @@
+// Bootstrap 4 Breakpoints
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+
 .Collections {
   #record-list {
-    max-height: calc(100vh - 295px);
+    max-height: calc(100vh - 150px);
     overflow-y: scroll;
+    @media screen and (min-width: $md) {
+      max-height: calc(100vh - 295px);
+    }
   }
   #parts-list, #collection-profile {
-    max-height: calc(100vh - 295px - 250px);
+    max-height: calc(100vh - 150px);
     overflow-y: scroll;
+    @media screen and (min-width: $md) {
+      max-height: calc(100vh - 295px - 250px);
+    }
   }
 }
