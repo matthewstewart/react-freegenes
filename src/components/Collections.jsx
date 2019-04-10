@@ -190,7 +190,7 @@ class Collections extends Component {
                     )}  
                   </div>
                 </div>
-                {parts && parts.length > 0 && (
+                {this.state.isReady && parts && parts.length > 0 && (
                   <div className="card mt-3">
                     <div className="card-header text-capitalize">
                       {selectedRecord.name} Parts
