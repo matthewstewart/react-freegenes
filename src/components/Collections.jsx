@@ -176,7 +176,7 @@ class Collections extends Component {
                   <div className="card-header text-capitalize">
                     {this.state.isReady ? selectedRecord.name : 'Loading...'}
                   </div>
-                  <div className="card-body">
+                  <div className="card-body" id="collection-profile">
                     {/* <pre>{JSON.stringify(this.state.selectedRecord, null, 2)}</pre> */}
                     {this.state.isReady ? (
                       <div className="card-text">
