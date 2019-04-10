@@ -107,7 +107,13 @@ class Collections extends Component {
     const selectedRecord = this.state.selectedRecord;
     const parts = this.state.parts || [];
 
-    const recordListItems = records.map((record, recordIndex) => {
+    const recordListItems = [].concat(records)
+    .sort((a, b) => {
+      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) { return -1; }
+      return 0;
+    })
+    .map((record, recordIndex) => {
       return (
         <NavLink 
           key={shortid.generate()}
@@ -118,32 +124,24 @@ class Collections extends Component {
         </NavLink>
       );
     });
-    const partListItems = parts.map((part, partIndex) => {
-      //const partIsString = typeof part === 'string';
-      // if (partIsString) {
-      //   return (
-      //     <NavLink 
-      //       key={shortid.generate()}
-      //       className="list-group-item list-group-item-action"
-      //       to={`/collections/${this.state.selectedRecord.uuid}/parts/${part}`}
-      //     >
-      //       {part}
-      //     </NavLink>
-      //   );
-      // } else {
-      //   return null;
-      // }
+
+    const partListItems = [].concat(parts)
+    .sort((a, b) => {
+      if (a.name > b.name) { return 1; }
+      if (a.name < b.name) { return -1; }
+      return 0;
+    })
+    .map((part, partIndex) => {
       return (
         <PartListItem 
           key={shortid.generate()}
           collection={this.state.selectedRecord}
           part={part}
           {...this.props}
-          //className="list-group-item list-group-item-action"
-          //to={`/collections/${this.state.selectedRecord.uuid}/parts/${part}`}
         />
       );
     });
+
     return (
       <div className="Collections container-fluid">
         <div className="row">
