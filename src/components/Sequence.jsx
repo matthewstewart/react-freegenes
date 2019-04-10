@@ -19,7 +19,7 @@ class Sequence extends Component {
   render() {
     return (
       <div className="Sequence mt-2">
-        {this.props.title}:&nbsp; 
+        <strong>{this.props.title}</strong>:&nbsp; 
         {this.state.expanded ? (
           <button 
             className="btn btn-sm btn-primary"
