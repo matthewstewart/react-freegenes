@@ -88,7 +88,13 @@ class Plates extends Component {
   render() {
     const records = this.state.records;
     const selectedRecord = this.state.selectedRecord;
-    const recordListItems = records.map((record, recordIndex) => {
+    const recordListItems = [].concat(records)
+    .sort((a, b) => {
+      if (a.plate_name > b.plate_name) { return 1; }
+      if (a.plate_name < b.plate_name) { return -1; }
+      return 0;
+    })
+    .map((record, recordIndex) => {
       return (
         <NavLink 
           key={shortid.generate()}
