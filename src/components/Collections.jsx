@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Markdown from 'react-markdown';
-import { Treebeard } from 'react-treebeard';
 import Api from '../modules/Api';
 import shortid from 'shortid';
 import './Collections.scss';

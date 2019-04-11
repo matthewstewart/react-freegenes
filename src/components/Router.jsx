@@ -10,6 +10,7 @@ class Router extends Component {
     return (
       <div className="Router">
         <Switch>
+          <Route path="/collection-tree/:collectionID" render={(props) => <CollectionTree {...props} {...this.props}/>}/>
           <Route path="/collection-tree" render={(props) => <CollectionTree {...props} {...this.props}/>}/>
           <Route path="/plates/:recordId" render={(props) => <Plates {...props} {...this.props}/>}/>
           <Route exact path="/plates" render={(props) => <Plates {...props} {...this.props}/>}/>
