@@ -41,7 +41,7 @@ export default {
         height: 14,
         width: 14,
         arrow: {
-          fill: '#9DA5AB',
+          fill: '#333333', // default '#9DA5AB'
           strokeWidth: 0
         }
       },
@@ -49,7 +49,7 @@ export default {
         base: {
           display: 'inline-block',
           verticalAlign: 'top',
-          color: '#9DA5AB'
+          color: '#333333' // default '#9DA5AB'
         },
         connector: {
           width: '2px',
