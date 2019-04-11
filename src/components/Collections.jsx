@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import Markdown from 'react-markdown';
+import { Treebeard } from 'react-treebeard';
 import Api from '../modules/Api';
 import shortid from 'shortid';
 import './Collections.scss';
@@ -34,8 +35,8 @@ class Collections extends Component {
 
   async getRecord(id) {
     try {
-      // return await Api.get(`/collections/full/${id}`);
-      return await Api.get(`/collections/recurse/${id}`);
+      return await Api.get(`/collections/full/${id}`);
+      //return await Api.get(`/collections/recurse/${id}`);
     } catch (error) {
       throw error;
     }
@@ -72,7 +73,8 @@ class Collections extends Component {
   getDataSync() {
     this.getData()
     .then(res => {
-      const { records, selectedRecord, parts } = res;
+      let { records, selectedRecord, parts } = res;
+      if (selectedRecord) { this.treebeardize(selectedRecord)};
       let statusMessage = `${records.length} Collection links`;
       if (selectedRecord) {
         statusMessage += `, the ${selectedRecord.name} Collection`;
@@ -92,6 +94,10 @@ class Collections extends Component {
     .catch(error => {
       throw error;
     });
+  }
+
+  treebeardize(collection) {
+    console.log('treebeardize', collection);
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -163,16 +169,6 @@ class Collections extends Component {
                 <div className="card-text">
                   {statusMessage}
                 </div>
-                {/* {this.state.isReady ? (
-                  <div className="card-text">
-                    {records.length} Collections were found.
-                    {selectedRecord && <><br/>1 Collection with id {selectedRecord.uuid} found.</>}
-                  </div>
-                ) : (
-                  <div className="card-text">
-                    Fetching Collections from the API...
-                  </div>
-                )} */}
               </div>
               <ul className="list-group list-group-flush" id="record-list">
                 {recordListItems}
