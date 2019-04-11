@@ -5,7 +5,7 @@ export default {
       backgroundColor: '#FFFFFF', // default '#21252B'
       margin: 0,
       padding: '15px',
-      color: '#9DA5AB',
+      color: '#333333', // default '#9DA5AB' 
       fontFamily: 'lucida grande,tahoma,verdana,arial,sans-serif',
       fontSize: '16px'
     },

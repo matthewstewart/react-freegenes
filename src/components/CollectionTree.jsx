@@ -93,6 +93,33 @@ class CollectionTree extends Component {
         part.description && partObj.children.push({ name: `${part.description}`});
         part.status && partObj.children.push({ name: `Status: ${part.status}`});
         part.gene_id && partObj.children.push({ name: `Gene ID: ${part.gene_id}`});
+        part.part_type && partObj.children.push({ name: `Part Type: ${part.part_type}`});
+        part.primer_for && partObj.children.push({ name: `Primer For: ${part.primer_for}`});
+        part.primer_rev && partObj.children.push({ name: `Primer Rev: ${part.primer_rev}`});
+        part.original_sequence && partObj.children.push({ 
+          name: `Original Sequence`,
+          children: [
+            { name: `${part.original_sequence}`}
+          ]
+        });
+        part.optimized_sequence && partObj.children.push({ 
+          name: `Optimized Sequence`,
+          children: [
+            { name: `${part.optimized_sequence}`}
+          ]
+        });
+        part.synthesized_sequence && partObj.children.push({ 
+          name: `Synthesized Sequence`,
+          children: [
+            { name: `${part.synthesized_sequence}`}
+          ]
+        });
+        part.full_sequence && partObj.children.push({ 
+          name: `Full Sequence`,
+          children: [
+            { name: `${part.full_sequence}`}
+          ]
+        });
         part.genbank && partObj.children.push({ 
           name: `Genbank`,
           children: [
@@ -195,6 +222,13 @@ class CollectionTree extends Component {
               )}
             </div>
           </div>
+          {/* <div className="col-xs-12 col-md-6">
+            <div className="card mt-3">
+              <div className="card-body">
+                <pre>{JSON.stringify(this.state.collection, null, 2)}</pre>
+              </div>
+            </div>
+          </div>             */}
         </div>
       </div>
     );
