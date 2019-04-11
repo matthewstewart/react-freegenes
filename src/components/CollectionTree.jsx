@@ -135,6 +135,11 @@ class CollectionTree extends Component {
             { name: `translation: ${part.genbank.translation}`}
           ]
         });
+        part.barcode && partObj.children.push({ name: `Barcode: ${part.barcode}`});
+        part.translation && partObj.children.push({ name: `Translation: ${part.translation}`});
+        part.vbd && partObj.children.push({ name: `VBD: ${part.vbd}`});
+        part.vector && partObj.children.push({ name: `Vector: ${part.vector}`});
+        part.tags && partObj.children.push({ name: `Tags: ${part.tags}`});
         subCollectionObj.children[0].children.push(partObj);
       }
       subCollectionObj.children[0].children.sort((a, b) => {
