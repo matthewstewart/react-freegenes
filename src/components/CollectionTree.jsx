@@ -85,8 +85,29 @@ class CollectionTree extends Component {
       for (let j = 0; j < parts.length; j++) {
         const part = parts[j];
         const partObj = {
-          name: part.name
+          name: part.name,
+          children: []
         };
+        part.time_created && partObj.children.push({ name: `Created: ${part.time_created}`});
+        part.time_updated && partObj.children.push({ name: `Updated: ${part.time_updated}`});
+        part.description && partObj.children.push({ name: `${part.description}`});
+        part.status && partObj.children.push({ name: `Status: ${part.status}`});
+        part.gene_id && partObj.children.push({ name: `Gene ID: ${part.gene_id}`});
+        part.genbank && partObj.children.push({ 
+          name: `Genbank`,
+          children: [
+            { name: `EC_number: ${part.genbank.EC_number}`},
+            { name: `GenBank_acc: ${part.genbank.GenBank_acc}`},
+            { name: `Source: ${part.genbank.Source}`},
+            { name: `gene: ${part.genbank.gene}`},
+            { name: `gene_synonyms: ${part.genbank.gene_synonyms}`},
+            { name: `locus_tag: ${part.genbank.locus_tag}`},
+            { name: `note: ${part.genbank.note}`},
+            { name: `product: ${part.genbank.product}`},
+            { name: `protein_id: ${part.genbank.protein_id}`},
+            { name: `translation: ${part.genbank.translation}`}
+          ]
+        });
         subCollectionObj.children[0].children.push(partObj);
       }
       subCollectionObj.children[0].children.sort((a, b) => {
@@ -102,6 +123,7 @@ class CollectionTree extends Component {
       if (a.name < b.name) { return -1; }
       return 0;
     });
+    result.children[0].name = `Sub-Collections (${result.children[0].children.length})`;
     return result;
   }
 
